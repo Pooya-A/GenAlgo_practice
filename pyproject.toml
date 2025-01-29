@@ -10,6 +10,9 @@ packages = [{include = "genalgo_practice"}]
 python = "^3.9"
 torch = "^2.5.1"
 torchvision = "^0.20.1"
+ipykernel = "^6.29.5"
+matplotlib = "^3.9.2"
+pandas = "^2.2.3"
 
 
 [build-system]
