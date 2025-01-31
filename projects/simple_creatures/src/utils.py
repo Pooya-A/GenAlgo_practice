@@ -12,19 +12,33 @@ def get_run_df(creatures):
 	return df.sort_values(by='score', ascending=False)
 
 
-def plot_state(creatures, foods, x_width, y_width):
-	clear_output(wait=True)
-	fig = plt.figure(figsize=(5,5))
-	ax = plt.axes()
+def plot_state(creatures, foods, width, height):
+	"""
+	Plots the current state of the creatures and foods.
 
-	ax.set_xlim(0,x_width)
-	ax.set_ylim(0,y_width)
-	for i in creatures:
-		ax.scatter(i.x, i.y, c='r')
-		ax.plot([i.x, i.x + np.cos(i.orientation)*i.speed], [i.y,i.y+np.sin(i.orientation)*i.speed], c='k')
-	
-	
-	for key, item in foods.items():
-		ax.scatter(item.x,item.y, c='g')
+	Parameters
+	----------
+	creatures: A list of Creature objects
+	foods: A dictionary of Food objects
+	width: The width of the grid
+	height: The height of the grid
+	"""
+	clear_output(wait=True)
+	fig, ax = plt.subplots(figsize=(5, 5))
+
+	ax.set_xlim(0, width)
+	ax.set_ylim(0, height)
+
+	for creature in creatures:
+		ax.scatter(creature.x, creature.y, color='red')
+		ax.plot(
+			[creature.x, creature.x + np.cos(creature.orientation) * creature.speed],
+			[creature.y, creature.y + np.sin(creature.orientation) * creature.speed],
+			color='black'
+		)
+
+	for food in foods.values():
+		ax.scatter(food.x, food.y, color='green')
+
 	plt.pause(0.0001)
 	plt.show()
