@@ -4,11 +4,24 @@ import numpy as np
 from IPython.display import clear_output
 
 def get_run_df(creatures):
-	df = pd.DataFrame([{
+	"""
+	Generates a dataframe for single generation run.
+
+	Parameters
+	----------
+	creatures: A list of Creature objects
+
+	Returns
+	-------
+	df: A pandas dataframe
+	"""
+	run_data = [{
 		'neural_network': creature.neural_network,
 		'score': creature.score,
 		'creature': creature
-		} for creature in creatures])
+	} for creature in creatures]
+	
+	df = pd.DataFrame(run_data)
 	return df.sort_values(by='score', ascending=False)
 
 
